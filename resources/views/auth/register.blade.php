@@ -9,7 +9,7 @@
         <!-- Validation Errors -->
         <x-auth-validation-errors class="mb-4" :errors="$errors" />
 
-        <form action="{{ route('loans.store')}}" method="POST">
+        <form action="{{ route('register')}}" method="POST">
             @csrf
 
             <!-- Name -->
