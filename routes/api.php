@@ -19,10 +19,8 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 });
 
 
+Route::group(['middleware'=>'auth:sanctum'], function(){
 
-Route::middleware(['auth:sanctum'])->group(function () {
-   
+
     Route::get('apiLoans', 'App\Http\Controllers\LoanController@apiLoans');
- 
-  
 });
