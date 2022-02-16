@@ -16,14 +16,20 @@
             <div>
                 <x-label for="name" :value="__('Name')" />
 
-                <x-input id="name" class="block mt-1 w-full" type="text" name="name" :value="old('name')" required autofocus />
+                <x-input id="name" class="block mt-1 w-full" type="text" name="name" :value="old('name')"  autofocus  placeholder="Full Name"/>
             </div>
 
             <!-- Email Address -->
             <div class="mt-4">
                 <x-label for="email" :value="__('Email')" />
 
-                <x-input id="email" class="block mt-1 w-full" type="email" name="email" :value="old('email')" required />
+                <x-input id="email" class="block mt-1 w-full" type="email" name="email" :value="old('email')"  placeholder="Email" />
+            </div>
+                        <!-- Email Address -->
+            <div class="mt-4">
+                <x-label for="phone_number" :value="__('Phone Number')" /> 
+
+                <x-input id="phone_number" class="block mt-1 w-full" type="text" name="phone_number" :value="old('phone_number')" placeholder="254XXXXXXXXX"  />
             </div>
 
             <!-- Password -->
@@ -32,8 +38,8 @@
 
                 <x-input id="password" class="block mt-1 w-full"
                                 type="password"
-                                name="password"
-                                required autocomplete="new-password" />
+                                name="password" placeholder="Password"
+                                 autocomplete="new-password" />
             </div>
 
             <!-- Confirm Password -->
@@ -41,8 +47,8 @@
                 <x-label for="password_confirmation" :value="__('Confirm Password')" />
 
                 <x-input id="password_confirmation" class="block mt-1 w-full"
-                                type="password"
-                                name="password_confirmation" required />
+                                type="password" placeholder="Confirm Password"
+                                name="password_confirmation"  />
             </div>
 
             <div class="flex items-center justify-end mt-4">
