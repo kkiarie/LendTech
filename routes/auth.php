@@ -69,3 +69,5 @@ Route::resource('loans', 'App\Http\Controllers\LoanController')->middleware('aut
 
 
 Route::get('loan-approve/{id}', 'App\Http\Controllers\LoanController@approveloan')->middleware('auth');
+Route::get('loan-pay/{id}', 'App\Http\Controllers\LoanController@loanpay')->middleware('auth');
+Route::get('loan-notify/{id}', 'App\Http\Controllers\LoanController@loannotify')->middleware('auth');

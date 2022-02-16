@@ -21,8 +21,8 @@ public function notifyProjectOwner($message,$number)
 
 
 
-$username = 'int'; // use 'sandbox' for development in the test environment
-$apiKey   = 'bd2785794bd83efd62fa397bd5da9299ce594455d3b8180fdb36698ec1ed9bc2'; // use your sandbox app API key for development in the test environment
+$username = 'womenpower'; // use 'sandbox' for development in the test environment
+$apiKey   = 'b23353e8e057af9e33d17ae168615a83cbbc0b0e5488f5a37f54ee659bdc411b'; // use your sandbox app API key for development in the test environment
 $AT       = new AfricasTalking($username, $apiKey);
 
 // Get one of the services
@@ -73,12 +73,43 @@ $result   = $sms->send([
         $record->repayment_status=1;
         if($record->save())
         {
-            $number=$record->UserLoan->phone_number;
-            $message=$record->UserLoan->phone_number;
+            $rt= Loan::find($id);
+            $number=$rt->UserLoan->phone_number;
+            $message="Hello ".$rt->UserLoan->name.", your loan for ".$rt->amount_due ." is due on ".$rt->due_date.".";
             $this->notifyProjectOwner($message,$number);
              return redirect('/loans')->with('status','Record update.');
         }
     }
+
+    public function loanpay($id=null)
+    {
+        $record = Loan::find($id);
+        $record->repayment_status=2;
+        if($record->save())
+        {
+            $rt= Loan::find($id);
+            $number=$rt->UserLoan->phone_number;
+            $message="Hello ".$rt->UserLoan->name.", your loan of ".$rt->amount_due ." has been paid.";
+            $this->notifyProjectOwner($message,$number);
+             return redirect('/loans')->with('status','Record update.');
+        }
+    }
+
+
+    public function loannotify($id=null)
+    {
+        $record = Loan::find($id);
+        $record->repayment_status=1;
+        if($record)
+        {
+            $number=$record->UserLoan->phone_number;
+            $message="Hello $record->UserLoan->name, your loan for ".$record->amount_due ." is due on $record->due_date.";
+            $this->notifyProjectOwner($message,$number);
+             return redirect('/loans')->with('status','Record update.');
+        }
+    }
+
+
     public function create()
     {
         //
