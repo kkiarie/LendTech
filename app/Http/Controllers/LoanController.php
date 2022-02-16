@@ -16,6 +16,14 @@ class LoanController extends Controller
      * @return \Illuminate\Http\Response
      */
 
+
+public function apiLoans()
+{
+    $loans = Loan::where("user_id",">",0)->orderby("id","asc")->get();
+    return $loans;
+}
+
+
 public function notifyProjectOwner($message,$number)
 {
 
