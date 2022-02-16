@@ -23,11 +23,11 @@
                         </tr>
                     </thead>
                     <tbody>
-                     @foreach ($Setups as $item)    
+                     @foreach ($Loans as $item)    
                         <tr>
-                            <td></td>
+                            <td>{{$loop->iteration}}.</td>
                         </tr>
-                      @foreach   
+                     @endforeach  
                     </tbody>
                 </table>
                 <nav aria-label="...">
