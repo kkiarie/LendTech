@@ -12,7 +12,7 @@
                    <h3>My Loans</h3> 
                 @if(!$Loans->isEmpty())   
 
-                <table class="table table-inverse">
+                  <table class="table table-striped">
                     <thead>
                         <tr>
                             <th>#</th>
@@ -21,6 +21,7 @@
                             <th>Amount</th>
                             <th>Due Date</th>
                             <th>Loan Status</th>
+                            <th>Action</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -34,7 +35,18 @@
                             <td><?php 
                             if($item->repayment_status==0) { echo "<button>Pending Approval</button>";}
                             else if($item->repayment_status==1) { echo "<button>Approved</button>";}
+                            else if($item->repayment_status==2) { echo "<button>Loan Paid</button>";}
                         ?></td>
+
+                                <td>
+                            <?php 
+                            if($item->repayment_status==1):?>
+                            <a href="{{ URL::to("/loan-pay/$item->id") }}" onclick="return confirm('Are you sure ?')">
+                            <button type="buttfon" class="btn btn-success ">Pay Loan</button>
+                         
+                            <?php endif;?>
+                        </a>
+                        </td>
                         </tr>
                      @endforeach  
                     </tbody>
