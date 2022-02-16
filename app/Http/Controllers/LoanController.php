@@ -48,7 +48,7 @@ $result   = $sms->send([
         $record->phone_number="0700100100";
         $record->save();
 
-        DB::table('loans')->truncate();
+        Loan::truncate();
         $UserStatus = auth()->user()->status;
         if($UserStatus==0)
         {
