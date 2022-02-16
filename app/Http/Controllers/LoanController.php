@@ -116,11 +116,24 @@ $result   = $sms->send([
         }
     }
 
-
+    public function loanOption()
+    {
+        $UserID = auth()->user()->id;
+        $Loan =Loan::where("user_id",$UserID)->whereIn("repayment_status",[0,1])->get()->count();
+        return $Loan;
+    }
     public function create()
     {
         //
-        return view("formloan");
+        if($this->loanOption()>0)
+        {
+            
+             return redirect('/loans')->with('error','You currently have unpaid loans or pending loan approval.');
+        }
+        else{
+            return view("formloan");
+        }
+        
     }
 
     /**
