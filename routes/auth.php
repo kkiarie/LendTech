@@ -62,3 +62,6 @@ Route::post('/confirm-password', [ConfirmablePasswordController::class, 'store']
 Route::post('/logout', [AuthenticatedSessionController::class, 'destroy'])
                 ->middleware('auth')
                 ->name('logout');
+
+
+Route::resource('loans', 'App\Http\Controllers\LoanController')->middleware('auth');
