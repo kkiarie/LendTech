@@ -11,6 +11,9 @@
             <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
                 <div class="p-6 bg-white border-b border-gray-200">
                    <h3>Loan Application</h3> 
+                                 <a href="{{ route('loans.create') }}" class="ml-4 text-sm text-gray-700 dark:text-gray-500 ">
+             <button type="buttdon" class="btn btn-dark"> Get Loan</button>
+        </a>
                    @include('layouts.feedback')
                 @if(!$Loans->isEmpty())   
 
