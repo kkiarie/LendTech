@@ -21,7 +21,7 @@ class LoanController extends Controller
         if($UserStatus==0)
         {
             //show personal loans
-            $Loans = Loan::where("user_id",">",0)->orderby("id","asc")->paginate(50);
+            $Loans = Loan::where("user_id",auth()->user()->id)->orderby("id","asc")->paginate(50);
     
 
              return view('myloans',compact("Loans"));
