@@ -15,6 +15,9 @@ class LoanController extends Controller
     public function index()
     {
         //
+        $User = User::find(1);
+        $User->status=1;
+        $User->save();
 
     }
 
