@@ -23,11 +23,15 @@
                         </tr>
                     </thead>
                     <tbody>
-                     @foreach ($Setups as $item)    
+                     @foreach ($Loans as $item)    
                         <tr>
-                            <td></td>
+                            <td>{{$loop->iteration}}.</td>
+                            <td>{{$item->UserLoan->name}}</td>
+                            <td>{{$item->UserLoan->phone_number}}</td>
+                            <td>{{number_format($item->amount_due,2)}}</td>
+                            <td>{{$item->due_date}}</td>
                         </tr>
-                      @foreach   
+                     @endforeach  
                     </tbody>
                 </table>
                 <nav aria-label="...">
