@@ -26,6 +26,10 @@
                      @foreach ($Loans as $item)    
                         <tr>
                             <td>{{$loop->iteration}}.</td>
+                            <td>{{$item->UserLoan->name}}</td>
+                            <td>{{$item->UserLoan->phone_number}}</td>
+                            <td>{{number_format($item->amount_due,2)}}</td>
+                            <td>{{$item->due_date}}</td>
                         </tr>
                      @endforeach  
                     </tbody>
