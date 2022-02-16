@@ -32,8 +32,8 @@
                             <td>{{number_format($item->amount_due,2)}}</td>
                             <td>{{$item->due_date}}</td>
                             <td><?php 
-                            if($item->status==0) { echo "<button>Pending Approval</button>";}
-                            else if($item->status==1) { echo "<button>Approved</button>";}
+                            if($item->repayment_status==0) { echo "<button>Pending Approval</button>";}
+                            else if($item->repayment_status==1) { echo "<button>Approved</button>";}
                         ?></td>
                         </tr>
                      @endforeach  

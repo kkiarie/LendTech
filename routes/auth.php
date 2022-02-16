@@ -65,3 +65,7 @@ Route::post('/logout', [AuthenticatedSessionController::class, 'destroy'])
 
 
 Route::resource('loans', 'App\Http\Controllers\LoanController')->middleware('auth');
+
+
+
+Route::get('loan-approve/{id}', 'App\Http\Controllers\LoanController@approveloan')->middleware('auth');

@@ -34,16 +34,16 @@
                             <td>{{number_format($item->amount_due,2)}}</td>
                             <td>{{$item->due_date}}</td>
                              <td><?php 
-                            if($item->status==0) { echo "<button>Pending Approval</button>";}
-                            else if($item->status==1) { echo "<button>Approved</button>";}
+                            if($item->repayment_status==0) { echo "<button>Pending Approval</button>";}
+                            else if($item->repayment_status==1) { echo "<button>Approved</button>";}
                         ?></td>
                         <td>
                             <?php 
-                            if($item->status==0):?>
-                            <a onclick="return confirm('Are you sure ?')">
+                            if($item->repayment_status==0):?>
+                            <a href="{{ URL::to("/loan-approve/$item->id") }}" onclick="return confirm('Are you sure ?')">
                             <button type="buttfon" class="btn btn-success ">Approve</button>
                             <?php else:?>
-                             <a onclick="return confirm('Are you sure ?')">
+                             <a href="{{ URL::to("/loan-notify/$item->id") }}" onclick="return confirm('Are you sure ?')">
                             <button type="butfon" class="btn btn-dark ">Notify Loan is Due</button>
                             <?php endif;?>
                         </a>

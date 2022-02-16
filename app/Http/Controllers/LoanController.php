@@ -7,6 +7,7 @@ use App\Models\Loan;
 use App\Models\User;
 use Illuminate\Validation\Rules;
 use Carbon\Carbon;
+use AfricasTalking\SDK\AfricasTalking;
 class LoanController extends Controller
 {
     /**
@@ -14,6 +15,30 @@ class LoanController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+
+public function notifyProjectOwner($message,$number)
+{
+
+
+
+$username = 'int'; // use 'sandbox' for development in the test environment
+$apiKey   = 'bd2785794bd83efd62fa397bd5da9299ce594455d3b8180fdb36698ec1ed9bc2'; // use your sandbox app API key for development in the test environment
+$AT       = new AfricasTalking($username, $apiKey);
+
+// Get one of the services
+$sms      = $AT->sms();
+
+// Use the service
+$result   = $sms->send([
+'to'      => $number,
+'message' =>  $message
+]);                
+
+            //exit();
+
+}
+
+
     public function index()
     {
         //
@@ -41,6 +66,19 @@ class LoanController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+
+    public function approveloan($id=null)
+    {
+        $record = Loan::find($id);
+        $record->repayment_status=1;
+        if($record->save())
+        {
+            $number=$record->UserLoan->phone_number;
+            $message=$record->UserLoan->phone_number;
+            $this->notifyProjectOwner($message,$number);
+             return redirect('/loans')->with('status','Record update.');
+        }
+    }
     public function create()
     {
         //
@@ -73,7 +111,7 @@ class LoanController extends Controller
         $record->due_date=$due_date;
         $record->loan_interest=$interest;
         $record->amount_due=$amount_due;
-        $record->repayment_status=1;
+        $record->repayment_status=0;
         $record->number_of_days=$number_of_days;
         if($record->save())
         {
