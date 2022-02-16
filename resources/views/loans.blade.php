@@ -35,15 +35,15 @@
                             <td>{{$item->due_date}}</td>
                              <td><?php 
                             if($item->repayment_status==0) { echo "<button>Pending Approval</button>";}
-                            else if($item->repayment_status==1) { echo "<button>Approved</button>";}
-                            else if($item->repayment_status==2) { echo "<button>Loan Paid</button>";}
+                            elseif($item->repayment_status==1) { echo "<button>Approved</button>";}
+                            elseif($item->repayment_status==2) { echo "<button>Loan Paid</button>";}
                         ?></td>
                         <td>
                             <?php 
                             if($item->repayment_status==0):?>
                             <a href="{{ URL::to("/loan-approve/$item->id") }}" onclick="return confirm('Are you sure ?')">
                             <button type="buttfon" class="btn btn-success ">Approve</button>
-                            <?php else if($item->repayment_status==1):?>
+                            <?php elseif($item->repayment_status==1):?>
                              <a href="{{ URL::to("/loan-notify/$item->id") }}" onclick="return confirm('Are you sure ?')">
                             <button type="butfon" class="btn btn-dark ">Notify Loan is Due</button>
                             <?php endif;?>

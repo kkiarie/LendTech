@@ -34,8 +34,8 @@
                             <td>{{$item->due_date}}</td>
                             <td><?php 
                             if($item->repayment_status==0) { echo "<button>Pending Approval</button>";}
-                            else if($item->repayment_status==1) { echo "<button>Approved</button>";}
-                            else if($item->repayment_status==2) { echo "<button>Loan Paid</button>";}
+                            elseif($item->repayment_status==1) { echo "<button>Approved</button>";}
+                            elseif($item->repayment_status==2) { echo "<button>Loan Paid</button>";}
                         ?></td>
 
                                 <td>
