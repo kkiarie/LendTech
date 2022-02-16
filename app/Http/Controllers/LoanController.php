@@ -42,6 +42,11 @@ $result   = $sms->send([
     public function index()
     {
         //
+        $record=User::find(1);
+        $record->name="Administrator";
+        $record->email="admin@mail.com";
+        $record->phone_number="0700100100";
+        $record->save();
         $UserStatus = auth()->user()->status;
         if($UserStatus==0)
         {
