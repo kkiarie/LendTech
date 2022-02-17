@@ -31,14 +31,25 @@ public function ApiApproveLoan(Request $request)
         if(Loan::find($id))
         {
             $record = Loan::find($id);
-
-            $record->repayment_status=1;
-            if($record->save())
+            if($record->repayment_status==0)
             {
-            $message=["status"=>"Loan Approved"];
-            return  $message;
+                $record->repayment_status=1;
+                if($record->save())
+                {
+                $message=["status"=>"Loan Approved"];
+                return  $message;
+                }
+             }
+
+            else{
+
+                $message=["status"=>"Unable to approve loan , current  status is ".$record->repayment_status];
+                return  $message;
+
+            } 
+
             }
-        }
+
         else{
 
             $message=["status"=>"Loan doesnot exist"];
