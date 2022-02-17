@@ -50,7 +50,7 @@ public function ApiCreateUser(Request $request)
 
 public function ApiApproveLoan(Request $request)
 {
-        $id=$request->id;
+        $id=$request->LoanId;
         
         if(Loan::find($id))
         {
