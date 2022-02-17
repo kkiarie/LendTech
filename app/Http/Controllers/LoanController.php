@@ -39,7 +39,7 @@ public function ApiLogin(Request $request)
     if (Auth::attempt(['email' => $email, 'password' => $password])) {
         $data = Auth::user();
       
-         $message=["status"=>"succes","message"=>"login was sucessfull","data"=>$data];
+         $message=["status"=>"success","message"=>"login was sucessfull","data"=>$data];
       }
       else{
 
@@ -52,6 +52,32 @@ public function ApiLogin(Request $request)
 
 public function ApiMakeLoan(Request $request)
 {
+
+
+        
+        $user_id=$request->user_id;
+        $amount=$request->amount;
+        $number_of_days=$request->number_of_days;
+        $interest=15;
+        $amount_due=round($amount*1.15);
+        $due_date=Carbon::now()->addDays($number_of_days);
+        $record= new Loan();
+        $record->user_id=$user_id;
+        $record->amount=$amount;
+        $record->due_date=$due_date;
+        $record->loan_interest=$interest;
+        $record->amount_due=$amount_due;
+        $record->repayment_status=0;
+        $record->number_of_days=$number_of_days;
+        if($record->save())
+        {
+
+            return ["status"=>"success","message"=>$record];
+        }
+        else{
+
+            return ["status"=>"error","message"=>"An error occured, please try again"];
+        }
 
 
 }

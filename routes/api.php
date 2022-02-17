@@ -30,5 +30,6 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 Route::get('apiLoans', 'App\Http\Controllers\LoanController@apiLoans');
 Route::post('appove-loan', 'App\Http\Controllers\LoanController@ApiApproveLoan');
 Route::post('login-user', 'App\Http\Controllers\LoanController@ApiLogin');
+Route::post('loan-application', 'App\Http\Controllers\LoanController@ApiLoanApply');
 
 
