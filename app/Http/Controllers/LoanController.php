@@ -29,7 +29,7 @@ public function apiLoans()
     return $loans;
 }
 
-public function ApiCreateUser(Request $request)
+public function ApiLogin(Request $request)
 {
 
 
