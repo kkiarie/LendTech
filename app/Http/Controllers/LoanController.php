@@ -42,6 +42,13 @@ public function ApiCreateUser(Request $request)
 }
 
 
+public function ApiMakeLoan(Request $request)
+{
+
+
+}
+
+
 public function ApiApproveLoan(Request $request)
 {
         $id=$request->LoanId;
@@ -177,16 +184,17 @@ $result   = $sms->send([
         }
     }
 
-    public function loanOption()
+    public function loanOption($UserID)
     {
-        $UserID = auth()->user()->id;
+        
         $Loan =Loan::where("user_id",$UserID)->whereIn("repayment_status",[0,1])->get()->count();
         return $Loan;
     }
     public function create()
     {
         //
-        if($this->loanOption()>0)
+        $UserID = auth()->user()->id;
+        if($this->loanOption($UserID)>0)
         {
             
              return redirect('/loans')->with('error','You currently have unpaid loans or pending loan approval.');
