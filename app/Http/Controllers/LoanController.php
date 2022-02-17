@@ -12,7 +12,7 @@ use Illuminate\Auth\Events\Registered;
 // use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
-use Illuminate\Validation\Rules;
+// use Illuminate\Validation\Rules;
 use Illuminate\Support\Str;
 class LoanController extends Controller
 {
@@ -33,17 +33,8 @@ public function ApiCreateUser(Request $request)
 {
 
 
-        $user = User::create([
-            'name' => $request->name,
-            'email' => $request->email,
-            'phone_number' => $request->phone_number,
-            'status' => 0,
-            'password' => Hash::make($request->password),
-        ]);
-        $uid=strtoupper(Str::random(5)."".$user->id);
-        $Record=User::find($user->id);
-        $Record->uid=$uid;
-        $Record->save();
+    $email=$request->email;
+    $password=$request->password;
 }
 
 
