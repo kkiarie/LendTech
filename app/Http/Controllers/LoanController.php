@@ -35,6 +35,17 @@ public function ApiCreateUser(Request $request)
 
     $email=$request->email;
     $password=$request->password;
+
+    if (Auth::attempt(['email' => $email, 'password' => $password])) {
+      
+         $message=["status","succes","message"=>"login was sucessfull"];
+      }
+      else{
+
+        $message=["status","error","message"=>"invalid login credentials"];
+      }
+
+      return $message;
 }
 
 
