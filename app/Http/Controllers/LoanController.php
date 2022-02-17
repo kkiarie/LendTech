@@ -24,6 +24,19 @@ public function apiLoans()
 }
 
 
+public function approveloan()
+{
+        $id=$request->id;
+        $record = Loan::find($id);
+        $record->repayment_status=1;
+        if($record->save())
+        {
+            $message=["status"=>"Loan Approved"];
+             return  $message;
+        }
+}
+
+
 public function notifyProjectOwner($message,$number)
 {
 
