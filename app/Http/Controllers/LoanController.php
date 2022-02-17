@@ -37,12 +37,13 @@ public function ApiLogin(Request $request)
     $password=$request->password;
 
     if (Auth::attempt(['email' => $email, 'password' => $password])) {
+        $data = Auth::user();
       
-         $message=["status","succes","message"=>"login was sucessfull"];
+         $message=["status"=>"succes","message"=>"login was sucessfull","data"=>$data];
       }
       else{
 
-        $message=["status","error","message"=>"invalid login credentials"];
+        $message=["status"=>"error","message"=>"invalid login credentials"];
       }
 
       return $message;
