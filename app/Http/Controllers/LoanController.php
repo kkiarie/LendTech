@@ -24,7 +24,7 @@ public function apiLoans()
 }
 
 
-public function approveloan()
+public function ApiApproveLoan()
 {
         $id=$request->id;
         $record = Loan::find($id);
