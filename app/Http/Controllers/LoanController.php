@@ -50,7 +50,7 @@ public function ApiLogin(Request $request)
 }
 
 
-public function ApiMakeLoan(Request $request)
+public function ApiLoanApply(Request $request)
 {
 
 
