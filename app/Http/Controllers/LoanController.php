@@ -8,7 +8,12 @@ use App\Models\User;
 use Illuminate\Validation\Rules;
 use Carbon\Carbon;
 use AfricasTalking\SDK\AfricasTalking;
+use Illuminate\Auth\Events\Registered;
+// use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Validation\Rules;
+use Illuminate\Support\Str;
 class LoanController extends Controller
 {
     /**
