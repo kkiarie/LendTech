@@ -8,6 +8,7 @@ use App\Models\User;
 use Illuminate\Validation\Rules;
 use Carbon\Carbon;
 use AfricasTalking\SDK\AfricasTalking;
+use Illuminate\Support\Facades\Hash;
 class LoanController extends Controller
 {
     /**
@@ -21,6 +22,29 @@ public function apiLoans()
 {
     $loans = Loan::where("user_id",">",0)->orderby("id","asc")->get();
     return $loans;
+}
+
+public function ApiCreateUser(Request $request)
+{
+
+    $request->validate([
+            'name' => ['required', 'string', 'max:255'],
+            'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
+            'phone_number' => ['required', 'numeric','unique:users'],
+            'password' => ['required', 'confirmed', Rules\Password::defaults()],
+        ]);
+
+        $user = User::create([
+            'name' => $request->name,
+            'email' => $request->email,
+            'phone_number' => $request->phone_number,
+            'status' => 0,
+            'password' => Hash::make($request->password),
+        ]);
+        $uid=strtoupper(Str::random(5)."".$user->id);
+        $Record=User::find($user->id);
+        $Record->uid=$uid;
+        $Record->save();
 }
 
 

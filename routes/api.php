@@ -29,5 +29,6 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 
 Route::get('apiLoans', 'App\Http\Controllers\LoanController@apiLoans');
 Route::post('appove-loan', 'App\Http\Controllers\LoanController@ApiApproveLoan');
+Route::post('create-user', 'App\Http\Controllers\LoanController@ApiCreateUser');
 
 
