@@ -27,13 +27,24 @@ public function apiLoans()
 public function ApiApproveLoan(Request $request)
 {
         $id=$request->id;
-        $record = Loan::find($id);
-        $record->repayment_status=1;
-        if($record->save())
+        
+        if(Loan::find($id))
         {
+            $record = Loan::find($id);
+
+            $record->repayment_status=1;
+            if($record->save())
+            {
             $message=["status"=>"Loan Approved"];
-             return  $message;
+            return  $message;
+            }
         }
+        else{
+
+            $message=["status"=>"Loan doesnot exist"];
+            return  $message;
+        }
+  
 }
 
 
